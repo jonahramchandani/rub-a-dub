@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jrg-hV-NuE" customClass="ClosingTimesCell" customModule="rub_a_dub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbo-Ss-Iko">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="22"/>
+                    <color key="backgroundColor" red="1" green="0.98431372549019602" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="1" green="0.98431372549019602" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFv-Xc-76X">
+                    <rect key="frame" x="5" y="4.333333333333333" width="62" height="13.333333333333336"/>
+                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="12"/>
+                    <color key="textColor" red="0.1764705882" green="0.21960784310000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vrr-jW-I87">
+                    <rect key="frame" x="88" y="4.333333333333333" width="27" height="13.333333333333336"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYz-H7-Diw">
+                            <rect key="frame" x="0.0" y="0.0" width="27" height="13.333333333333334"/>
+                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="12"/>
+                            <color key="textColor" red="0.1764705882" green="0.21960784310000001" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Pyb-pV-NwD"/>
+            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="1" green="0.99542805229999998" blue="0.95831353350000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="AFv-Xc-76X" firstAttribute="centerY" secondItem="jrg-hV-NuE" secondAttribute="centerY" id="8JE-Vr-pmI"/>
+                <constraint firstItem="Pyb-pV-NwD" firstAttribute="trailing" secondItem="vrr-jW-I87" secondAttribute="trailing" constant="5" id="9yE-uv-gZi"/>
+                <constraint firstAttribute="bottom" secondItem="Vbo-Ss-Iko" secondAttribute="bottom" id="MU7-vq-vAm"/>
+                <constraint firstItem="Vbo-Ss-Iko" firstAttribute="top" secondItem="jrg-hV-NuE" secondAttribute="top" id="P2F-da-m4Z"/>
+                <constraint firstAttribute="trailing" secondItem="Vbo-Ss-Iko" secondAttribute="trailing" id="aXZ-gx-6e7"/>
+                <constraint firstItem="vrr-jW-I87" firstAttribute="centerY" secondItem="jrg-hV-NuE" secondAttribute="centerY" id="edD-4R-5Xv"/>
+                <constraint firstItem="AFv-Xc-76X" firstAttribute="leading" secondItem="Pyb-pV-NwD" secondAttribute="leading" constant="5" id="yMJ-ym-xfx"/>
+                <constraint firstItem="Vbo-Ss-Iko" firstAttribute="leading" secondItem="jrg-hV-NuE" secondAttribute="leading" id="zcH-Aa-LjE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dayLabel" destination="AFv-Xc-76X" id="1Aa-RB-ARr"/>
+                <outlet property="timeLabel" destination="QYz-H7-Diw" id="5lt-dm-5pI"/>
+            </connections>
+            <point key="canvasLocation" x="-83.969465648854964" y="-329.22535211267609"/>
+        </view>
+    </objects>
+</document>

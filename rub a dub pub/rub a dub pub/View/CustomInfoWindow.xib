@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZlG-2y-STk" customClass="CustomInfoWindow" customModule="rub_a_dub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pri-RB-5Mw">
+                    <rect key="frame" x="0.0" y="0.0" width="403" height="100"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-5D-IHY">
+                            <rect key="frame" x="0.0" y="0.0" width="403" height="100"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-iW-FDt">
+                                    <rect key="frame" x="0.0" y="0.0" width="201.66666666666666" height="100"/>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="912-9Y-oS2">
+                                    <rect key="frame" x="201.66666666666663" y="0.0" width="201.33333333333337" height="100"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="njp-Tz-dLK">
+                                            <rect key="frame" x="15" y="13.666666666666664" width="176.33333333333334" height="72.666666666666686"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="The Star By Hackney Downs" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="umo-bd-rjp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="1hv-OH-FqW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="18"/>
+                                                    <color key="textColor" red="0.1450980392" green="0.25882352939999997" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0zW-yC-vjG">
+                                                    <rect key="frame" x="0.0" y="40" width="110.33333333333333" height="14.333333333333336"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y84-2b-qqI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="32.333333333333336" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="12"/>
+                                                            <color key="textColor" red="0.1450980392" green="0.25882352939999997" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpf-7r-Q9C">
+                                                            <rect key="frame" x="37.333333333333343" y="0.0" width="5.6666666666666643" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="0.1450980392" green="0.25882352939999997" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-AG-Fu1">
+                                                            <rect key="frame" x="48.000000000000028" y="0.0" width="62.333333333333343" height="14.333333333333334"/>
+                                                            <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="12"/>
+                                                            <color key="textColor" red="0.1450980392" green="0.25882352939999997" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Quiz Night" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5PU-9x-jME">
+                                                    <rect key="frame" x="0.0" y="59.333333333333336" width="60.333333333333336" height="13.333333333333336"/>
+                                                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="12"/>
+                                                    <color key="textColor" red="0.1450980392" green="0.25882352939999997" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="njp-Tz-dLK" firstAttribute="centerY" secondItem="912-9Y-oS2" secondAttribute="centerY" id="1j3-jj-hRm"/>
+                                        <constraint firstAttribute="trailing" secondItem="njp-Tz-dLK" secondAttribute="trailing" constant="10" id="IGM-EP-V8S"/>
+                                        <constraint firstItem="njp-Tz-dLK" firstAttribute="leading" secondItem="912-9Y-oS2" secondAttribute="leading" constant="15" id="M7O-zh-VkK"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="912-9Y-oS2" firstAttribute="top" secondItem="rVI-5D-IHY" secondAttribute="top" id="0tt-6m-brq"/>
+                                <constraint firstAttribute="bottom" secondItem="912-9Y-oS2" secondAttribute="bottom" id="Dio-pg-jaX"/>
+                                <constraint firstItem="ixe-iW-FDt" firstAttribute="top" secondItem="rVI-5D-IHY" secondAttribute="top" id="YF0-74-0Wl"/>
+                                <constraint firstAttribute="trailing" secondItem="912-9Y-oS2" secondAttribute="trailing" id="emi-8O-6ev"/>
+                                <constraint firstAttribute="bottom" secondItem="ixe-iW-FDt" secondAttribute="bottom" id="kKc-cL-NaS"/>
+                                <constraint firstItem="ixe-iW-FDt" firstAttribute="leading" secondItem="rVI-5D-IHY" secondAttribute="leading" id="tqG-Jf-LD0"/>
+                            </constraints>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bb-kx-El9">
+                            <rect key="frame" x="0.0" y="0.0" width="403" height="100"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain"/>
+                            <connections>
+                                <action selector="windowTapped:" destination="ZlG-2y-STk" eventType="touchUpInside" id="SD2-w9-gCx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.98431724460000003" blue="0.96983328310000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="9bb-kx-El9" firstAttribute="leading" secondItem="Pri-RB-5Mw" secondAttribute="leading" id="2OL-qS-yGq"/>
+                        <constraint firstAttribute="bottom" secondItem="9bb-kx-El9" secondAttribute="bottom" id="6eM-pX-hQM"/>
+                        <constraint firstAttribute="trailing" secondItem="9bb-kx-El9" secondAttribute="trailing" id="Aac-oV-9h4"/>
+                        <constraint firstItem="rVI-5D-IHY" firstAttribute="top" secondItem="Pri-RB-5Mw" secondAttribute="top" id="IPS-no-dLj"/>
+                        <constraint firstAttribute="bottom" secondItem="rVI-5D-IHY" secondAttribute="bottom" id="P9P-1i-BtP"/>
+                        <constraint firstAttribute="trailing" secondItem="rVI-5D-IHY" secondAttribute="trailing" id="azj-jf-7Al"/>
+                        <constraint firstAttribute="height" constant="100" id="ded-jD-l14"/>
+                        <constraint firstItem="9bb-kx-El9" firstAttribute="top" secondItem="Pri-RB-5Mw" secondAttribute="top" id="wSK-62-pzc"/>
+                        <constraint firstItem="rVI-5D-IHY" firstAttribute="leading" secondItem="Pri-RB-5Mw" secondAttribute="leading" id="xKM-uh-AqU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Vkv-az-1GK"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Pri-RB-5Mw" firstAttribute="top" secondItem="ZlG-2y-STk" secondAttribute="top" id="20Z-tp-aXN"/>
+                <constraint firstItem="Pri-RB-5Mw" firstAttribute="trailing" secondItem="Vkv-az-1GK" secondAttribute="trailing" id="HIj-zx-MVq"/>
+                <constraint firstAttribute="bottom" secondItem="Pri-RB-5Mw" secondAttribute="bottom" id="IOA-KG-TJ5"/>
+                <constraint firstItem="Pri-RB-5Mw" firstAttribute="leading" secondItem="Vkv-az-1GK" secondAttribute="leading" id="OmM-ZM-a4J"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backView" destination="Pri-RB-5Mw" id="l8E-YC-03U"/>
+                <outlet property="didTapWindow" destination="9bb-kx-El9" id="SL1-f4-5x9"/>
+                <outlet property="eventToday" destination="5PU-9x-jME" id="4vv-da-gUC"/>
+                <outlet property="openLabel" destination="cWM-AG-Fu1" id="HNt-rv-wI7"/>
+                <outlet property="pubDistance" destination="y84-2b-qqI" id="bX3-9C-guD"/>
+                <outlet property="pubImage" destination="ixe-iW-FDt" id="CC0-d7-kYP"/>
+                <outlet property="pubName" destination="umo-bd-rjp" id="Qir-Hd-Odd"/>
+            </connections>
+            <point key="canvasLocation" x="-1151.9083969465648" y="-538.02816901408448"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
