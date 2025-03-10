@@ -34,3 +34,6 @@ class WelcomeViewController: UIViewController {
 
 // map starts on current location
 // what's on button
+
+
+// The more filters isn't showing as pressed if the times have been changed, but it is being pressed if garden/grub/open is pressed

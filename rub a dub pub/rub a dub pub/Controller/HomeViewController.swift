@@ -52,21 +52,22 @@ class HomeViewController: UIViewController {
     
     @MainActor
     func loadData() {
-        async {
+        Task {
             do {
                 let pubData = try await self.ref.child("17w0ijLwmxQlHAi1VCxs9aAxf7mg7cgKES1H-EbTJkVQ/RDMasterSheet").getData()
                 var counter = PubBrain.pubs.count
+                
                 for child in pubData.children {
                     if let pubSnapshot = child as? DataSnapshot {
                         if let pubData = pubSnapshot.value as? [String: Any] {
-                            let pubFromData = pubBrain.pubConverter(pubData: pubData, id: counter)
+                            let pubFromData = try await pubBrain.pubConverter(pubData: pubData, id: counter)
                             PubBrain.pubs.append(pubFromData)
                             counter += 1
                         }
                     }
                 }
             } catch {
-                print(error)
+                print("Error loading pub data: \(error)")
             }
         }
     }

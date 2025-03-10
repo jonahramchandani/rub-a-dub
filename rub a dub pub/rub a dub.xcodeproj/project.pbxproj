@@ -26,6 +26,8 @@
 		D453ABAE2B694D5000D2EB4F /* PubBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453ABAD2B694D5000D2EB4F /* PubBrain.swift */; };
 		D453ABB02B696B1400D2EB4F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453ABAF2B696B1400D2EB4F /* FilterViewController.swift */; };
 		D453ABB22B696F3E00D2EB4F /* FilterBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453ABB12B696F3E00D2EB4F /* FilterBrain.swift */; };
+		D47DF98C2D02FF4E00329368 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D47DF98B2D02FF4E00329368 /* FirebaseStorage */; };
+		D47DF98E2D02FF7600329368 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D47DF98D2D02FF7600329368 /* FirebaseAuthCombine-Community */; };
 		D48CD8302B90EF9100275002 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CD82F2B90EF9100275002 /* FavouritesViewController.swift */; };
 		D49901072B84C66B00149233 /* ImagePubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49901052B84C66B00149233 /* ImagePubCell.swift */; };
 		D49901082B84C66B00149233 /* ImagePubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49901062B84C66B00149233 /* ImagePubCell.xib */; };
@@ -61,6 +63,8 @@
 		D453ABAD2B694D5000D2EB4F /* PubBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubBrain.swift; sourceTree = "<group>"; };
 		D453ABAF2B696B1400D2EB4F /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		D453ABB12B696F3E00D2EB4F /* FilterBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBrain.swift; sourceTree = "<group>"; };
+		D46C184A2D03584900BCD058 /* rub a dub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "rub a dub.entitlements"; sourceTree = "<group>"; };
+		D46C184B2D0358CE00BCD058 /* testing_firebase.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testing_firebase.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D48CD82F2B90EF9100275002 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		D49901052B84C66B00149233 /* ImagePubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePubCell.swift; sourceTree = "<group>"; };
 		D49901062B84C66B00149233 /* ImagePubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePubCell.xib; sourceTree = "<group>"; };
@@ -85,12 +89,14 @@
 			files = (
 				D4BF40C92BC145E200D2474A /* FirebaseDatabaseSwift in Frameworks */,
 				D400CF902B7141F2000A619E /* GoogleMaps in Frameworks */,
+				D47DF98C2D02FF4E00329368 /* FirebaseStorage in Frameworks */,
 				D4BF40C52BC145E200D2474A /* FirebaseAuth in Frameworks */,
 				D4BF40C32BC145E200D2474A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				D400CF942B7141F2000A619E /* GoogleMapsCore in Frameworks */,
 				D400CF962B7141F2000A619E /* GoogleMapsM4B in Frameworks */,
 				D4BF40C72BC145E200D2474A /* FirebaseDatabase in Frameworks */,
 				D400CF922B7141F2000A619E /* GoogleMapsBase in Frameworks */,
+				D47DF98E2D02FF7600329368 /* FirebaseAuthCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +106,8 @@
 		D4DD71452B692713005B8509 = {
 			isa = PBXGroup;
 			children = (
+				D46C184B2D0358CE00BCD058 /* testing_firebase.playground */,
+				D46C184A2D03584900BCD058 /* rub a dub.entitlements */,
 				D4DD71502B692713005B8509 /* rub a dub pub */,
 				D4DD714F2B692713005B8509 /* Products */,
 			);
@@ -198,6 +206,8 @@
 				D4BF40C42BC145E200D2474A /* FirebaseAuth */,
 				D4BF40C62BC145E200D2474A /* FirebaseDatabase */,
 				D4BF40C82BC145E200D2474A /* FirebaseDatabaseSwift */,
+				D47DF98B2D02FF4E00329368 /* FirebaseStorage */,
+				D47DF98D2D02FF7600329368 /* FirebaseAuthCombine-Community */,
 			);
 			productName = "rub a dub pub";
 			productReference = D4DD714E2B692713005B8509 /* rub a dub.app */;
@@ -424,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "rub a dub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DKL5JL7V45;
@@ -455,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "rub a dub.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DKL5JL7V45;
@@ -543,6 +555,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D400CF8E2B7141F2000A619E /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
 			productName = GoogleMapsM4B;
+		};
+		D47DF98B2D02FF4E00329368 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseStorage;
+		};
+		D47DF98D2D02FF7600329368 /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "FirebaseAuthCombine-Community";
 		};
 		D4BF40C22BC145E200D2474A /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;

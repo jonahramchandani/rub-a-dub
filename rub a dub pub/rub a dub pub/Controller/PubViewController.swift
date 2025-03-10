@@ -280,6 +280,7 @@ extension UIImageView {
         contentMode = mode
         let cacheKey = NSString(string: url.absoluteString)
         
+        // Check cache first
         if let cachedImage = UIImageView.imageCache.object(forKey: cacheKey) {
             DispatchQueue.main.async { [weak self] in
                 self?.image = cachedImage
@@ -287,14 +288,48 @@ extension UIImageView {
             return
         }
         
+        // Show loading indicator for Firebase Storage URLs
+        var activityIndicator: UIActivityIndicatorView?
+        if url.absoluteString.contains("firebasestorage.googleapis.com") {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                activityIndicator = UIActivityIndicatorView(style: .medium)
+                activityIndicator?.center = self.center
+                activityIndicator?.startAnimating()
+                self.addSubview(activityIndicator!)
+            }
+        }
+        
         UIImageView.session.dataTask(with: url) { [weak self] data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
+            // Remove loading indicator if it exists
+            DispatchQueue.main.async {
+                activityIndicator?.removeFromSuperview()
+            }
             
+            if let error = error {
+                print("Error downloading image: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self?.image = UIImage(named: "default_pub_image")
+                }
+                return
+            }
+            
+            guard
+                let httpURLResponse = response as? HTTPURLResponse,
+                httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType,
+                mimeType.hasPrefix("image"),
+                let data = data,
+                let image = UIImage(data: data)
+            else {
+                print("Invalid image data or response")
+                DispatchQueue.main.async {
+                    self?.image = UIImage(named: "default_pub_image")
+                }
+                return
+            }
+            
+            // Cache the successfully downloaded image
             UIImageView.imageCache.setObject(image, forKey: cacheKey)
             
             DispatchQueue.main.async {
@@ -304,7 +339,11 @@ extension UIImageView {
     }
     
     func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFill) {
-        guard let url = URL(string: link) else { return }
+        guard let url = URL(string: link) else {
+            print("Invalid URL string: \(link)")
+            self.image = UIImage(named: "default_pub_image")
+            return
+        }
         downloaded(from: url, contentMode: mode)
     }
 }
