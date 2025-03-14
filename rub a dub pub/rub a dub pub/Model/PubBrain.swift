@@ -19,23 +19,26 @@ class PubBrain {
     func getImageURLs(imageFolder: String) async throws -> [String] {
         print("🔍 Starting getImageURLs for folder: \(imageFolder)")
         
+        // Add "image-folder/" prefix to the folder path
+        let prefixedImageFolder = "image-folder/" + imageFolder
+        
         // 1. Check cache first for immediate return
-        if let cachedURLs = imageURLCache[imageFolder] {
-            print("📦 Using cached URLs for \(imageFolder)")
+        if let cachedURLs = imageURLCache[prefixedImageFolder] {
+            print("📦 Using cached URLs for \(prefixedImageFolder)")
             return cachedURLs
         }
         
         // 2. Reuse existing in-flight request if one exists
-        if let existingTask = pendingImageRequests[imageFolder] {
-            print("⏳ Reusing existing request for \(imageFolder)")
+        if let existingTask = pendingImageRequests[prefixedImageFolder] {
+            print("⏳ Reusing existing request for \(prefixedImageFolder)")
             return try await existingTask.value
         }
         
         // 3. Create a new task with a timeout
         let task = Task<[String], Error> {
-            print("🆕 Creating new request for \(imageFolder)")
+            print("🆕 Creating new request for \(prefixedImageFolder)")
             
-            guard !imageFolder.isEmpty else {
+            guard !prefixedImageFolder.isEmpty else {
                 print("⚠️ Empty folder path provided")
                 return getDefaultURLs()
             }
@@ -43,7 +46,7 @@ class PubBrain {
             let storageRef = storage.reference()
             
             // Clean the path by removing any gs:// prefix and storage bucket name
-            var cleanPath = imageFolder
+            var cleanPath = prefixedImageFolder
                 .replacingOccurrences(of: "gs://\(storageRef.bucket)/", with: "")
                 .trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -57,12 +60,12 @@ class PubBrain {
             
             do {
                 // 4. Set a maximum number of images to load (limit to first 5 for quick loading)
-                let result = try await folderRef.list(maxResults: 5)
+                let result = try await folderRef.list(maxResults: 10)
                 
                 if result.items.isEmpty {
                     print("⚠️ No items found in folder")
                     let defaultURLs = getDefaultURLs()
-                    imageURLCache[imageFolder] = defaultURLs
+                    imageURLCache[prefixedImageFolder] = defaultURLs
                     return defaultURLs
                 }
                 
@@ -72,7 +75,7 @@ class PubBrain {
                 var downloadURLs: [String] = []
                 
                 // Process only first 5 images max to keep loading time reasonable
-                let itemsToProcess = result.items.prefix(5)
+                let itemsToProcess = result.items.prefix(10)
                 
                 // Create array of tasks
                 let urlTasks = itemsToProcess.map { item in
@@ -98,7 +101,7 @@ class PubBrain {
                 if downloadURLs.isEmpty {
                     print("⚠️ Failed to load any image URLs")
                     let defaultURLs = getDefaultURLs()
-                    imageURLCache[imageFolder] = defaultURLs
+                    imageURLCache[prefixedImageFolder] = defaultURLs
                     return defaultURLs
                 }
                 
@@ -106,19 +109,19 @@ class PubBrain {
                 downloadURLs.sort()
                 
                 print("📦 Caching \(downloadURLs.count) URLs")
-                imageURLCache[imageFolder] = downloadURLs
+                imageURLCache[prefixedImageFolder] = downloadURLs
                 return downloadURLs
                 
             } catch {
                 print("❌ Error loading folder contents: \(error.localizedDescription)")
                 let defaultURLs = getDefaultURLs()
-                imageURLCache[imageFolder] = defaultURLs
+                imageURLCache[prefixedImageFolder] = defaultURLs
                 return defaultURLs
             }
         }
         
         // Store the task
-        pendingImageRequests[imageFolder] = task
+        pendingImageRequests[prefixedImageFolder] = task
         
         do {
             // 6. Add a timeout if task takes too long
@@ -134,13 +137,13 @@ class PubBrain {
             }
             
             let results = try await timeoutTask.value
-            pendingImageRequests[imageFolder] = nil
+            pendingImageRequests[prefixedImageFolder] = nil
             return results
         } catch {
-            pendingImageRequests[imageFolder] = nil
+            pendingImageRequests[prefixedImageFolder] = nil
             print("❌ Request failed or timed out: \(error.localizedDescription)")
             let defaultURLs = getDefaultURLs()
-            imageURLCache[imageFolder] = defaultURLs
+            imageURLCache[prefixedImageFolder] = defaultURLs
             return defaultURLs
         }
     }
