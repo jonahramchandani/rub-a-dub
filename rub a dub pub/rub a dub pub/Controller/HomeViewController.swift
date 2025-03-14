@@ -83,7 +83,7 @@ class HomeViewController: UIViewController {
         scrollView.isPagingEnabled = true
         
         // List of images for the carousel
-        let images: [UIImage] = [#imageLiteral(resourceName: "000466160014"), #imageLiteral(resourceName: "000466160005"), #imageLiteral(resourceName: "000466160021")]
+        let images: [UIImage] = [#imageLiteral(resourceName: "000466160014"), #imageLiteral(resourceName: "pool playing"), #imageLiteral(resourceName: "000466160021")]
         
         // Programatically creating the labels... sigh //
         // Create and position the text

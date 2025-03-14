@@ -16,160 +16,144 @@ class PubBrain {
     private var imageURLCache: [String: [String]] = [:]
     private var pendingImageRequests: [String: Task<[String], Error>] = [:]
     
-    func getImageURLs(imageFolder: String) -> [String] {
+    func getImageURLs(imageFolder: String) async throws -> [String] {
         print("🔍 Starting getImageURLs for folder: \(imageFolder)")
+        
+        // 1. Check cache first for immediate return
         if let cachedURLs = imageURLCache[imageFolder] {
-                    print("📦 Returning cached URLs for \(imageFolder)")
-                    return cachedURLs
-                }
-        
-        let storageRef = storage.reference()
-        print("🪣 Storage bucket: \(storageRef.bucket)")
-        // Clean the path by removing any gs:// prefix and storage bucket name
-        var cleanPath = imageFolder
-            .replacingOccurrences(of: "gs://\(storageRef.bucket)/", with: "")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-
-        // Ensure the path doesn't start with a slash
-        if cleanPath.hasPrefix("/") {
-            cleanPath = String(cleanPath.dropFirst())
+            print("📦 Using cached URLs for \(imageFolder)")
+            return cachedURLs
         }
-
-        print("🧹 Cleaned path: \(cleanPath)")
-        return [" "]
-    }
-
-//        
-//        // Synchronized access to pending requests
-//        if let existingTask = pendingImageRequests[imageFolder] {
-//            print("⏳ Reusing existing request for \(imageFolder)")
-//            return try await existingTask.value
-//        }
-//        
-//        let task = Task<[String], Error> {
-//            print("🆕 Creating new task for \(imageFolder)")
-//            
-//            guard !imageFolder.isEmpty else {
-//                return []
-//            }
-//
-//        
-//            
-
-//            
-//            // Get and verify the complete storage reference
-//            let folderRef = storageRef.child(cleanPath)
-//            print("📂 Complete storage path verification:")
-//            print("  - Bucket: \(folderRef.bucket)")
-//            print("  - Full path: \(folderRef.fullPath)")
-//            print("  - Name: \(folderRef.name)")
-//            print("  - Parent path: \(folderRef.parent()?.fullPath ?? "none")")
-//            print("  - Root reference: \(storageRef.root().fullPath)")
-//            
-//            do {
-//                // First, verify the folder exists
-//                let folderRef = storageRef.child(cleanPath)
-//                print("📂 Attempting to list contents of: \(folderRef.fullPath)")
-//                
-//                let result = try await folderRef.listAll()
-//                
-//                if result.items.isEmpty {
-//                    print("⚠️ No items found in folder")
-//                    let defaultURLs = [
-//                        "https://drive.google.com/uc?id=1JHQgVHLsx_QKpl-7u09qBF64uDKUEGJ9",
-//                        "https://drive.google.com/uc?id=1iPoCxpdDbKd10b-3tBlP_KwCYWno20MZ",
-//                        "https://drive.google.com/uc?id=17PuuRsQwssBMP_pKKiEDwy_l-vbBEeuL"
-//                    ]
-//                    imageURLCache[imageFolder] = defaultURLs
-//                    return defaultURLs
-//                }
-//                
-//                print("📊 Found \(result.items.count) items")
-//                
-//                var downloadURLs: [String] = []
-//                for item in result.items {
-//                    do {
-//                        let url = try await item.downloadURL()
-//                        downloadURLs.append(url.absoluteString)
-//                        print("✅ Got URL for \(item.name)")
-//                    } catch {
-//                        print("⚠️ Failed to get URL for \(item.name): \(error.localizedDescription)")
-//                        continue
-//                    }
-//                }
-//                
-//                // Sort URLs to ensure consistent order
-//                downloadURLs.sort()
-//                
-//                if !downloadURLs.isEmpty {
-//                    print("📦 Caching \(downloadURLs.count) URLs")
-//                    imageURLCache[imageFolder] = downloadURLs
-//                    return downloadURLs
-//                } else {
-//                    let defaultURLs = [
-//                        "https://drive.google.com/uc?id=1JHQgVHLsx_QKpl-7u09qBF64uDKUEGJ9",
-//                        "https://drive.google.com/uc?id=1iPoCxpdDbKd10b-3tBlP_KwCYWno20MZ",
-//                        "https://drive.google.com/uc?id=17PuuRsQwssBMP_pKKiEDwy_l-vbBEeuL"
-//                    ]
-//                    imageURLCache[imageFolder] = defaultURLs
-//                    return defaultURLs
-//                }
-//                
-//            } catch let error as StorageErrorCode {
-//                print("❌ Firebase Storage error: \(error.localizedDescription)")
-//                // Return default URLs for any storage error
-//                let defaultURLs = [
-//                    "https://drive.google.com/uc?id=1JHQgVHLsx_QKpl-7u09qBF64uDKUEGJ9",
-//                    "https://drive.google.com/uc?id=1iPoCxpdDbKd10b-3tBlP_KwCYWno20MZ",
-//                    "https://drive.google.com/uc?id=17PuuRsQwssBMP_pKKiEDwy_l-vbBEeuL"
-//                ]
-//                imageURLCache[imageFolder] = defaultURLs
-//                return defaultURLs
-//            } catch {
-//                print("❌ Unexpected error: \(error.localizedDescription)")
-//                throw error
-//            }
-//        }
-//        
-//        // Store the task
-//        pendingImageRequests[imageFolder] = task
-//        
-//        do {
-//            let results = try await task.value
-//            pendingImageRequests[imageFolder] = nil
-//            return results
-//        } catch {
-//            pendingImageRequests[imageFolder] = nil
-//            throw error
-//        }
-//    }
-    
-    func getImageURL(path: String) async throws -> [String] {
-        print("🔍 Starting getImageURL for path: \(path)")
         
-        let storageRef = storage.reference(withPath: path)
+        // 2. Reuse existing in-flight request if one exists
+        if let existingTask = pendingImageRequests[imageFolder] {
+            print("⏳ Reusing existing request for \(imageFolder)")
+            return try await existingTask.value
+        }
         
-        // Log storage reference details
-        print("📂 Storage reference details:")
-        print("  - Bucket: \(storageRef.bucket)")
-        print("  - Full path: \(storageRef.fullPath)")
-        print("  - Name: \(storageRef.name)")
+        // 3. Create a new task with a timeout
+        let task = Task<[String], Error> {
+            print("🆕 Creating new request for \(imageFolder)")
+            
+            guard !imageFolder.isEmpty else {
+                print("⚠️ Empty folder path provided")
+                return getDefaultURLs()
+            }
+            
+            let storageRef = storage.reference()
+            
+            // Clean the path by removing any gs:// prefix and storage bucket name
+            var cleanPath = imageFolder
+                .replacingOccurrences(of: "gs://\(storageRef.bucket)/", with: "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // Ensure the path doesn't start with a slash
+            if cleanPath.hasPrefix("/") {
+                cleanPath = String(cleanPath.dropFirst())
+            }
+            
+            print("🧹 Cleaned path: \(cleanPath)")
+            let folderRef = storageRef.child(cleanPath)
+            
+            do {
+                // 4. Set a maximum number of images to load (limit to first 5 for quick loading)
+                let result = try await folderRef.list(maxResults: 5)
+                
+                if result.items.isEmpty {
+                    print("⚠️ No items found in folder")
+                    let defaultURLs = getDefaultURLs()
+                    imageURLCache[imageFolder] = defaultURLs
+                    return defaultURLs
+                }
+                
+                print("📊 Found \(result.items.count) items")
+                
+                // 5. Use async let to parallelize URL fetching
+                var downloadURLs: [String] = []
+                
+                // Process only first 5 images max to keep loading time reasonable
+                let itemsToProcess = result.items.prefix(5)
+                
+                // Create array of tasks
+                let urlTasks = itemsToProcess.map { item in
+                    Task<String?, Error> {
+                        do {
+                            let url = try await item.downloadURL()
+                            print("✅ Got URL for \(item.name)")
+                            return url.absoluteString
+                        } catch {
+                            print("⚠️ Failed to get URL for \(item.name): \(error.localizedDescription)")
+                            return nil
+                        }
+                    }
+                }
+                
+                // Await all tasks concurrently
+                for task in urlTasks {
+                    if let url = try await task.value {
+                        downloadURLs.append(url)
+                    }
+                }
+                
+                if downloadURLs.isEmpty {
+                    print("⚠️ Failed to load any image URLs")
+                    let defaultURLs = getDefaultURLs()
+                    imageURLCache[imageFolder] = defaultURLs
+                    return defaultURLs
+                }
+                
+                // Sort URLs for consistent order
+                downloadURLs.sort()
+                
+                print("📦 Caching \(downloadURLs.count) URLs")
+                imageURLCache[imageFolder] = downloadURLs
+                return downloadURLs
+                
+            } catch {
+                print("❌ Error loading folder contents: \(error.localizedDescription)")
+                let defaultURLs = getDefaultURLs()
+                imageURLCache[imageFolder] = defaultURLs
+                return defaultURLs
+            }
+        }
+        
+        // Store the task
+        pendingImageRequests[imageFolder] = task
         
         do {
-            let downloadURL = try await storageRef.downloadURL()
-            print("✅ Successfully got URL for \(storageRef.name)")
-            return [downloadURL.absoluteString]  // Return as single-element array
+            // 6. Add a timeout if task takes too long
+            let timeoutTask = Task<[String], Error> {
+                let start = Date()
+                do {
+                    let result = try await task.value
+                    print("⏱️ Loading took \(Date().timeIntervalSince(start)) seconds")
+                    return result
+                } catch {
+                    throw error
+                }
+            }
             
-        } catch let error as StorageErrorCode {
-            print("❌ Firebase Storage error: \(error.localizedDescription)")
-            // Return default URLs array in case of error
-            return ["https://drive.google.com/uc?id=1JHQgVHLsx_QKpl-7u09qBF64uDKUEGJ9"]
-            
+            let results = try await timeoutTask.value
+            pendingImageRequests[imageFolder] = nil
+            return results
         } catch {
-            print("❌ Unexpected error: \(error.localizedDescription)")
-            throw error
+            pendingImageRequests[imageFolder] = nil
+            print("❌ Request failed or timed out: \(error.localizedDescription)")
+            let defaultURLs = getDefaultURLs()
+            imageURLCache[imageFolder] = defaultURLs
+            return defaultURLs
         }
     }
+
+    // Helper function to provide default URLs
+    private func getDefaultURLs() -> [String] {
+        return [
+            "https://drive.google.com/uc?id=1JHQgVHLsx_QKpl-7u09qBF64uDKUEGJ9",
+            "https://drive.google.com/uc?id=1iPoCxpdDbKd10b-3tBlP_KwCYWno20MZ",
+            "https://drive.google.com/uc?id=17PuuRsQwssBMP_pKKiEDwy_l-vbBEeuL"
+        ]
+    }
+    
     
     func findPubID(pubArray: [Pub], pubID: Int) -> Pub? {
         for p in pubArray {
@@ -201,8 +185,7 @@ class PubBrain {
         }
         
         let imageFolder = pubData["imageFolder"] as? String ?? ""
-//        let imageURLs = try await getImageURLs(imageFolder: imageFolder)
-        let imageURLs = try await getImageURL(path: "/image-folder/pub-on-the-park/1.JPG")
+        let imageURLs = try await getImageURLs(imageFolder: imageFolder)
         
         let newPub: Pub = Pub(id: id,
                               name: pubData["pubName"] as! String, 

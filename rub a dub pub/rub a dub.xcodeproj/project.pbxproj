@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99F6BF572D847E590089C25E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99F6BF562D847E590089C25E /* GoogleService-Info.plist */; };
 		D400CF902B7141F2000A619E /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D400CF8F2B7141F2000A619E /* GoogleMaps */; };
 		D400CF922B7141F2000A619E /* GoogleMapsBase in Frameworks */ = {isa = PBXBuildFile; productRef = D400CF912B7141F2000A619E /* GoogleMapsBase */; };
 		D400CF942B7141F2000A619E /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = D400CF932B7141F2000A619E /* GoogleMapsCore */; };
@@ -33,7 +34,6 @@
 		D49901082B84C66B00149233 /* ImagePubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D49901062B84C66B00149233 /* ImagePubCell.xib */; };
 		D4ACB5F92BC82536007E34BC /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACB5F72BC82536007E34BC /* CalendarCell.swift */; };
 		D4ACB5FA2BC82536007E34BC /* CalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4ACB5F82BC82536007E34BC /* CalendarCell.xib */; };
-		D4BF40C02BC1434A00D2474A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4BF40BF2BC1434A00D2474A /* GoogleService-Info.plist */; };
 		D4BF40C32BC145E200D2474A /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4BF40C22BC145E200D2474A /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		D4BF40C52BC145E200D2474A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D4BF40C42BC145E200D2474A /* FirebaseAuth */; };
 		D4BF40C72BC145E200D2474A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D4BF40C62BC145E200D2474A /* FirebaseDatabase */; };
@@ -48,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99F6BF562D847E590089C25E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D400CF972B714480000A619E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D400CF992B714DAD000A619E /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		D411B0072B84DAB6000985B8 /* TitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleCell.xib; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		D49901062B84C66B00149233 /* ImagePubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePubCell.xib; sourceTree = "<group>"; };
 		D4ACB5F72BC82536007E34BC /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		D4ACB5F82BC82536007E34BC /* CalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCell.xib; sourceTree = "<group>"; };
-		D4BF40BF2BC1434A00D2474A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4DD714E2B692713005B8509 /* rub a dub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rub a dub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DD71512B692713005B8509 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DD71532B692713005B8509 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 				D4DD715A2B692719005B8509 /* Assets.xcassets */,
 				D4DD715C2B692719005B8509 /* LaunchScreen.storyboard */,
 				D4DD715F2B692719005B8509 /* Info.plist */,
-				D4BF40BF2BC1434A00D2474A /* GoogleService-Info.plist */,
+				99F6BF562D847E590089C25E /* GoogleService-Info.plist */,
 			);
 			path = "rub a dub pub";
 			sourceTree = "<group>";
@@ -257,9 +257,9 @@
 			files = (
 				D4ACB5FA2BC82536007E34BC /* CalendarCell.xib in Resources */,
 				D44A9D142BC6D2E800EFBC11 /* ClosingTimesCell.xib in Resources */,
+				99F6BF572D847E590089C25E /* GoogleService-Info.plist in Resources */,
 				D4DD71682B69279E005B8509 /* Main.storyboard in Resources */,
 				D411B0082B84DAB6000985B8 /* TitleCell.xib in Resources */,
-				D4BF40C02BC1434A00D2474A /* GoogleService-Info.plist in Resources */,
 				D4DD715E2B692719005B8509 /* LaunchScreen.storyboard in Resources */,
 				D420640F2B754B2E00802FD9 /* CustomInfoWindow.xib in Resources */,
 				D4DD715B2B692719005B8509 /* Assets.xcassets in Resources */,
